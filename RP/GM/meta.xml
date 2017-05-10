@@ -1,0 +1,20 @@
+﻿<meta>
+  <info name="Gamemode" description="Boilerplate MySQL with registration and login" author="AndreasB" type="gamemode" />
+
+  <script src="GM.dll" type="server" lang="compiled" />
+  <assembly ref="Insight.Database.Configuration.dll" />
+  <assembly ref="Insight.Database.dll" />
+  <assembly ref="Insight.Database.Providers.Default.dll" />
+  <assembly ref="Insight.Database.Providers.MySql.dll" />
+  <assembly ref="MySql.Data.dll" />
+  <assembly ref="System.Data.dll" />
+  <assembly ref="System.Globalization.dll" />
+  <assembly ref="System.Configuration.dll" />
+  <assembly ref="BCrypt.Net.dll" />
+
+<!-- Boilerplate-->        
+        <file src="clientside/resources/boilerplate.html" />    
+
+    <!-- CEF -->
+        <script src="clientside/CEF.js" type="client" lang="javascript" />
+</meta>
