@@ -10,7 +10,7 @@ namespace Roleplay.GlobalVars
 {
     class Vars : Script
     {
-        public static string ServerName = "The Script";
+        public static string ServerName = "Los Santos V Roleplay";
         public static PedHash DefaultPedModel = PedHash.DrFriedlander;
     }
 }
