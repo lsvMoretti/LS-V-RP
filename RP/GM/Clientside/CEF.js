@@ -70,7 +70,7 @@ API.onResourceStop.connect(function () {
         CEF.destroy();
     }
 });
-
+API.sendChatMessage("Test");
 API.onServerEventTrigger.connect(function (eventName, args) {
     switch (eventName) {
         case "loginscript_loginsuccess":
@@ -96,4 +96,5 @@ API.onServerEventTrigger.connect(function (eventName, args) {
 
 function login(email, password) {
     API.triggerServerEvent("loginscript_login", email, password);
+    API.consoleoutput("login(email, pass)");
 }

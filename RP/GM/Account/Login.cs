@@ -20,6 +20,10 @@ namespace Roleplay.LoginHandle
 {
     public class Login : Script
     {
+        public Login()
+        {
+            API.onClientEventTrigger += API_onClientEventTrigger;
+        }
         [Command("login", "Usage: /login [email] [password]", SensitiveInfo = true, GreedyArg = true)]
         public void CMD_userlogin(Client player, string Email, string Password)
         {
@@ -38,12 +42,14 @@ namespace Roleplay.LoginHandle
             }
         }
 
-        private void API_onClientEventTrigger(Client sender, string eventName, params object[] arguments)
+        public void API_onClientEventTrigger(Client sender, string eventName, params object[] arguments)
         {
+            API.consoleOutput("Client event trigger: {0}", eventName);
             switch (eventName)
             {
                 case "loginscript_login":
                     ULogin(sender, arguments[0].ToString(), arguments[1].ToString());
+                    API.sendChatMessageToPlayer(sender, "loginscript_login");
                     break;
             }
         }
@@ -58,10 +64,12 @@ namespace Roleplay.LoginHandle
             _cmd.Parameters.AddWithValue("@name", Email);
             using (MySqlDataReader reader = _cmd.ExecuteReader())
             {
+                API.sendChatMessageToPlayer(p, "reader.HasRows");
                 if (reader.HasRows)
                 {
                     reader.Read();
                     var pw = reader.GetString("hash");
+                    API.sendChatMessageToPlayer(p, "reading");
                     if (ValidatePassword(Password, pw))
                     {
                         API.sendChatMessageToPlayer(p, "~g~Logged in as ~r~" + reader.GetString("email"));
@@ -74,12 +82,16 @@ namespace Roleplay.LoginHandle
                         OnUserLoggedIn(p);
                     }
                     else
+                    {
                         API.triggerClientEvent(p, "loginscript_loginfailed");
                         API.sendChatMessageToPlayer(p, "Login failed");
+                    }
                 }
                 else
+                {
                     API.triggerClientEvent(p, "loginscript_loginfailed");
                     API.sendChatMessageToPlayer(p, "Login failed");
+                }
             }
         }
 
