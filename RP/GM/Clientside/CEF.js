@@ -1,5 +1,4 @@
-﻿
-class WebBrowser {
+﻿class CefHelper {
     constructor(resourcePath) {
         this.path = resourcePath;
         this.open = false;
@@ -38,7 +37,7 @@ class WebBrowser {
     }
 }
 
-const CEF = new WebBrowser('');
+const CEF = new CefHelper('');
 
 API.onServerEventTrigger.connect(function (eventName, args) {
 
@@ -71,3 +70,30 @@ API.onResourceStop.connect(function () {
         CEF.destroy();
     }
 });
+
+API.onServerEventTrigger.connect(function (eventName, args) {
+    switch (eventName) {
+        case "loginscript_loginsuccess":
+            API.setHudVisible(true);
+            API.setChatVisible(true);
+            API.setGameplayCameraActive();
+            CEF.destroy();
+            break;
+        case "loginscript_show":
+            var playerPos = new Vector3(690, 933.82, 371.64);
+            var playerRot = new Vector3(-20, 0, -8.86);
+            let newCamera = API.createCamera(playerPos, playerRot);
+            API.setChatVisible(false);
+            API.setHudVisible(false);
+            API.setActiveCamera(newCamera);
+            CEF.show();
+            break;
+        case "loginscript_loginfailed":
+            CEF.eval("wrong_login();");
+            break;
+    }
+});
+
+function ulogin(email, password) {
+    API.triggerServerEvent("loginscript_login", email, hash);
+}

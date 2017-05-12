@@ -34,10 +34,12 @@
       <HintPath>..\packages\BCrypt.Net.0.1.0\lib\net35\BCrypt.Net.dll</HintPath>
     </Reference>
     <Reference Include="GrandTheftMultiplayer.Server, Version=0.1.493.627, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\grandtheftmultiplayer.api.0.1.493.627\lib\net452\GrandTheftMultiplayer.Server.exe</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\GrandTheftMultiplayer.Server.exe</HintPath>
     </Reference>
     <Reference Include="GrandTheftMultiplayer.Shared, Version=0.1.489.410, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\grandtheftmultiplayer.api.0.1.493.627\lib\net452\GrandTheftMultiplayer.Shared.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\GrandTheftMultiplayer.Shared.dll</HintPath>
     </Reference>
     <Reference Include="Insight.Database, Version=5.2.8.0, Culture=neutral, PublicKeyToken=f35c6ef87e515afc, processorArchitecture=MSIL">
       <HintPath>..\packages\Insight.Database.Core.5.2.8\lib\NET45\Insight.Database.dll</HintPath>
@@ -79,6 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Clientside\CEF.js" />
+    <Content Include="Clientside\main.js" />
     <Content Include="Clientside\Resources\boilerplate.css" />
     <Content Include="Clientside\Resources\boilerplate.html" />
     <Content Include="Clientside\ServersideCamera.js" />

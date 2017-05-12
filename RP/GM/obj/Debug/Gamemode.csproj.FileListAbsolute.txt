@@ -44,3 +44,26 @@ G:\Documents\GTANetwork\RP Script\RP\GM\obj\Debug\GM.pdb
 G:\Documents\GTANetwork\RP Script\RP\GM\bin\Debug\GrandTheftMultiplayer.Server.exe
 G:\Documents\GTANetwork\RP Script\RP\GM\bin\Debug\GrandTheftMultiplayer.Shared.dll
 G:\Documents\GTANetwork\RP Script\RP\GM\obj\Debug\Gamemode.csprojResolveAssemblyReference.cache
+G:\Github\Source\Repos\LS-V-RP\RP\GM\obj\Debug\Gamemode.csprojResolveAssemblyReference.cache
+G:\Github\Source\Repos\LS-V-RP\RP\GM\obj\Debug\GM.dll
+G:\Github\Source\Repos\LS-V-RP\RP\GM\obj\Debug\GM.pdb
+G:\Github\Source\Repos\LS-V-RP\RP\GM\bin\Debug\GM.dll.config
+G:\Github\Source\Repos\LS-V-RP\RP\GM\bin\Debug\GM.dll
+G:\Github\Source\Repos\LS-V-RP\RP\GM\bin\Debug\GM.pdb
+G:\Github\Source\Repos\LS-V-RP\RP\GM\bin\Debug\BCrypt.Net.dll
+G:\Github\Source\Repos\LS-V-RP\RP\GM\bin\Debug\GrandTheftMultiplayer.Server.exe
+G:\Github\Source\Repos\LS-V-RP\RP\GM\bin\Debug\GrandTheftMultiplayer.Shared.dll
+G:\Github\Source\Repos\LS-V-RP\RP\GM\bin\Debug\Insight.Database.Configuration.dll
+G:\Github\Source\Repos\LS-V-RP\RP\GM\bin\Debug\Insight.Database.dll
+G:\Github\Source\Repos\LS-V-RP\RP\GM\bin\Debug\Insight.Database.Providers.Default.dll
+G:\Github\Source\Repos\LS-V-RP\RP\GM\bin\Debug\Insight.Database.Providers.MySql.dll
+G:\Github\Source\Repos\LS-V-RP\RP\GM\bin\Debug\MySql.Data.dll
+G:\Github\Source\Repos\LS-V-RP\RP\GM\bin\Debug\BCrypt.Net.xml
+G:\Github\Source\Repos\LS-V-RP\RP\GM\bin\Debug\Insight.Database.pdb
+G:\Github\Source\Repos\LS-V-RP\RP\GM\bin\Debug\Insight.Database.xml
+G:\Github\Source\Repos\LS-V-RP\RP\GM\bin\Debug\Insight.Database.Configuration.pdb
+G:\Github\Source\Repos\LS-V-RP\RP\GM\bin\Debug\Insight.Database.Configuration.xml
+G:\Github\Source\Repos\LS-V-RP\RP\GM\bin\Debug\Insight.Database.Providers.Default.pdb
+G:\Github\Source\Repos\LS-V-RP\RP\GM\bin\Debug\Insight.Database.Providers.Default.xml
+G:\Github\Source\Repos\LS-V-RP\RP\GM\bin\Debug\Insight.Database.Providers.MySql.pdb
+G:\Github\Source\Repos\LS-V-RP\RP\GM\bin\Debug\Insight.Database.Providers.MySql.xml

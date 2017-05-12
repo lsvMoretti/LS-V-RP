@@ -11,6 +11,7 @@
   <assembly ref="System.Globalization.dll" />
   <assembly ref="System.Configuration.dll" />
   <assembly ref="BCrypt.Net.dll" />
+  <assembly ref="system.dll"/>
 
 <!-- Boilerplate-->        
         <file src="clientside/resources/boilerplate.html" />    

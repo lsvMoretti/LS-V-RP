@@ -35,7 +35,7 @@ namespace Roleplay.Connection
 
         public static void Login(Client player)
         {
-           // API.shared.triggerClientEvent(player, "interpolateCamera", 20000, _startCamPos, _startCamPos + new Vector3(0.0, -50.0, 50.0), new Vector3(0.0, 0.0, 180.0), new Vector3(0.0, 0.0, 95.0));
+            API.shared.triggerClientEvent(player, "interpolateCamera", 20000, _startCamPos, _startCamPos + new Vector3(0.0, -50.0, 50.0), new Vector3(0.0, 0.0, 180.0), new Vector3(0.0, 0.0, 95.0));
             player.position = _startPos;
             player.freeze(true);
             player.transparency = 0;
@@ -47,6 +47,7 @@ namespace Roleplay.Connection
         {
             string url = "G:/Documents/GTANetwork/Server/resources/RP/Clientside/Resources/boilerplate.html";
             API.shared.triggerClientEvent(player, "CEFController", url);
+            API.shared.sendChatMessageToPlayer(player, "Welcome to Los Santos V! Loading the login screen.");
         }
     }
 }

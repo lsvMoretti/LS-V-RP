@@ -53,6 +53,31 @@
     setOpen(newValue) { this.open = newValue; }
 }
 
+var cef = new CefHelper('G:/Documents/GTANetwork/Server/resources/RP/Clientside/Resources/boilerplate.html');
+
+API.onServerEventTrigger.connect(function (eventName, args) {
+    switch (eventName) {
+        case "loginscript_loginsuccess":
+            API.setHudVisible(true);
+            API.setChatVisible(true);
+            API.setGameplayCameraActive();
+            CEF.destroy();
+            break;
+        case "loginscript_show":
+            var playerPos = new Vector3(690, 933.82, 371.64);
+            var playerRot = new Vector3(-20, 0, -8.86);
+            let newCamera = API.createCamera(playerPos, playerRot);
+            API.setChatVisible(false);
+            API.setHudVisible(false);
+            API.setActiveCamera(newCamera);
+            cef.show();
+            break;
+        case "loginscript_loginfailed":
+            cef.eval("wrong_login();");
+            break;
+    }
+});
+
 API.onServerEventTrigger.connect(function (eventName, args) {
 
     if (eventName === "CEFDestroy") {
@@ -71,3 +96,7 @@ API.onServerEventTrigger.connect(function (eventName, args) {
         API.sendNotification("Press F1 to toggle the menu.\nPress F2 to see your mouse.\n~r~Press F4 to hide the interface.");
     }
 });
+
+function ulogin(email, password) {
+    API.triggerServerEvent("loginscript_login", email, password);
+}

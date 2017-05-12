@@ -13,7 +13,6 @@ using Roleplay.LoginHandle;
 
 namespace Roleplay
 {
-    
     public class Main : Script
     {
         public static MySqlConnectionStringBuilder _database;
@@ -28,6 +27,7 @@ namespace Roleplay
             MySqlInsightDbProvider.RegisterProvider();
             _database = new MySqlConnectionStringBuilder("server=localhost;user=root;database=gamemode;port=3306;password=;");
             _userRepository = _database.Connection().As<IUserRepository>();
+            MySqlInsightDbProvider.RegisterProvider();
         }
 
     }
