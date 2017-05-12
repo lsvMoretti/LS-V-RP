@@ -94,6 +94,6 @@ API.onServerEventTrigger.connect(function (eventName, args) {
     }
 });
 
-function ulogin(email, password) {
-    API.triggerServerEvent("loginscript_login", email, hash);
+function login(email, password) {
+    API.triggerServerEvent("loginscript_login", email, password);
 }

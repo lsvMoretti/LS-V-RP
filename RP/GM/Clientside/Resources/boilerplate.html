@@ -25,35 +25,37 @@
                         <div class="col-sm-7 col-md-5">
                             <h2>Login to continue</h2>
                             <p class="lead"> Welcome back, sign in with your existing UCP account credentials </p>
+                                <div class="form">
                                 <form class="login-form">
                                     <div class="row">
                                         <div class="col-sm-12"> <input id="login_email" type="text" placeholder="Email"> </div>
                                         <div class="col-sm-12"> <input id="login_password" type="password" placeholder="Password"> </div>
-                                        <div class="col-sm-12"> <button id="login_button" class="btn btn--primary type--uppercase" type="submit">Login</button> </div>
+                                        <div class="col-sm-12"> <button id="login_button" class="btn btn--primary type--uppercase">Login</button> </div>
                                     </div>
                                 </form> <span class="type--fine-print block">Dont have an account yet? Visit our UCP!</span> <span class="type--fine-print block">Forgot your username or password? <a href="page-accounts-recover.html">Recover account</a></span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
         </div>
-        <script src="js/jquery-3.1.1.min.js"></script>
+        <script src="jquery.js"></script>
         <script>
             function wrong_login() {
                 $('.callout.error').fadeIn();
                 $('#error_text').text("Wrong login information");
             };
-            $('.message a').click(function () {
+           /* $('.message a').click(function () {
                 $('form').animate({ height: "toggle", opacity: "toggle" }, "slow");
-            });
+            });*/
             $('#login_button').click(function () {
-                resourceCall("ulogin", $('#login_email').val(), $('#login_password').val());
+                resourceCall("login", $('#login_email').val(), $('#login_password').val());
             });
         </script>
-
+     <!-->   <script src="js/jquery-3.1.1.min.js"></script>
         <script src="js/parallax.js"></script>
         <script src="js/countdown.min.js"></script>
         <script src="js/smooth-scroll.min.js"></script>
-        <script src="js/scripts.js"></script>
+        <script src="js/scripts.js"></script> -->
 </body>
 </html>

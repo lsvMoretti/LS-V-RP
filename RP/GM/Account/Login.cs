@@ -21,11 +21,11 @@ namespace Roleplay.LoginHandle
     public class Login : Script
     {
         [Command("login", "Usage: /login [email] [password]", SensitiveInfo = true, GreedyArg = true)]
-        public void CMD_userlogin(Client player, string email, string password)
+        public void CMD_userlogin(Client player, string Email, string Password)
         {
-            UserAccount account = Roleplay.Main._userRepository.GetAccount(email);
+            UserAccount account = Main._userRepository.GetAccount(Email);
 
-            bool isPasswordCorrect = BCr.BCrypt.Verify(password, account.Hash);
+            bool isPasswordCorrect = BCr.BCrypt.Verify(Password, account.Hash);
             if (isPasswordCorrect)
             {
                 API.sendChatMessageToPlayer(player, "You are now logged in!");
@@ -64,7 +64,7 @@ namespace Roleplay.LoginHandle
                     var pw = reader.GetString("hash");
                     if (ValidatePassword(Password, pw))
                     {
-                        API.sendChatMessageToPlayer(p, "~g~Logged in as ~r~" + reader.GetString("username"));
+                        API.sendChatMessageToPlayer(p, "~g~Logged in as ~r~" + reader.GetString("email"));
                         API.freezePlayer(p, false);
                         API.setEntitySyncedData(p, "loginscript_logged_in", true);
                         API.setEntitySyncedData(p, "user_id", reader.GetInt32("id"));
@@ -75,9 +75,11 @@ namespace Roleplay.LoginHandle
                     }
                     else
                         API.triggerClientEvent(p, "loginscript_loginfailed");
+                        API.sendChatMessageToPlayer(p, "Login failed");
                 }
                 else
                     API.triggerClientEvent(p, "loginscript_loginfailed");
+                    API.sendChatMessageToPlayer(p, "Login failed");
             }
         }
 
