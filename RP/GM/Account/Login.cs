@@ -24,21 +24,20 @@ namespace Roleplay.LoginHandle
         {
             API.onClientEventTrigger += API_onClientEventTrigger;
         }
-        [Command("login", "Usage: /login [email] [password]", SensitiveInfo = true, GreedyArg = true)]
-        public void CMD_userlogin(Client player, string Email, string Password)
+        [Command("login", "Usage: /login [email] [password]", GreedyArg = true)]
+        public void CMD_userlogin(Client player, string email, string password)
         {
-            UserAccount account = Main._userRepository.GetAccount(Email);
+            UserAccount account = Main._userRepository.GetAccount(email);
 
-            bool isPasswordCorrect = BCr.BCrypt.Verify(Password, account.Hash);
+            bool isPasswordCorrect = BCr.BCrypt.Verify(password, account.Hash);
+
             if (isPasswordCorrect)
             {
-                API.sendChatMessageToPlayer(player, "You are now logged in!");
-                API.setEntitySyncedData(player, "LOGGED", true);
-
+                API.sendChatMessageToPlayer(player, "You're now logged in!");
             }
             else
             {
-                API.sendChatMessageToPlayer(player, "Wrong Password!");
+                API.sendChatMessageToPlayer(player, "Wrong password!");
             }
         }
 

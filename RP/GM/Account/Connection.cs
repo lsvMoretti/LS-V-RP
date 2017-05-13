@@ -45,9 +45,10 @@ namespace Roleplay.Connection
 
         public static void PromptLoginScreen(Client player)
         {
-            string url = "G:/Documents/GTANetwork/Server/resources/RP/Clientside/Resources/boilerplate.html";
-            API.shared.triggerClientEvent(player, "CEFController", url);
-            API.shared.sendChatMessageToPlayer(player, "Welcome to Los Santos V! Loading the login screen.");
+            //string url = "G:/Documents/GTANetwork/Server/resources/RP/Clientside/Resources/boilerplate.html";
+            //API.shared.triggerClientEvent(player, "CEFController", url);
+            API.shared.sendChatMessageToPlayer(player, "Welcome to Los Santos V!");
+            API.shared.sendChatMessageToPlayer(player, "Please use /login to continue!");
         }
     }
 }
