@@ -5,8 +5,8 @@ using GrandTheftMultiplayer.Shared;
 using GrandTheftMultiplayer.Server.Constant;
 using GrandTheftMultiplayer.Shared.Math;
 using GrandTheftMultiplayer.Server.Managers;
-using BCr = BCrypt.Net;
 using MySql.Data.MySqlClient;
+using CryptSharp;
 using Insight.Database.Providers.MySql;
 using Insight.Database;
 using Insight;
@@ -15,6 +15,9 @@ using System.Collections.Generic;
 using System.Data;
 using Roleplay;
 using Roleplay.Connection;
+using Roleplay.Context;
+using Roleplay.User;
+using Roleplay.CharSel;
 
 namespace Roleplay.LoginHandle
 {
@@ -23,80 +26,67 @@ namespace Roleplay.LoginHandle
         public Login()
         {
             API.onClientEventTrigger += API_onClientEventTrigger;
+            //API.onPlayerDisconnected += API_onPlayerDisconnected;
         }
-        [Command("login", "Usage: /login [email] [password]", GreedyArg = true)]
-        public void CMD_userlogin(Client player, string email, string password)
+
+        /*public void API_onPlayerDisconnected(Client player, string reason)
         {
-            UserAccount account = Main._userRepository.GetAccount(email);
-
-            bool isPasswordCorrect = BCr.BCrypt.Verify(password, account.Hash);
-
-            if (isPasswordCorrect)
+            if(API.getEntitySyncedData(player, "logged_in"))
             {
-                API.sendChatMessageToPlayer(player, "You're now logged in!");
+                API.setEntitySyncedData(player, "logged_in", false);
             }
-            else
-            {
-                API.sendChatMessageToPlayer(player, "Wrong password!");
-            }
+        }*/
+
+        [Command("login", "Usage: /login [email] [password]", GreedyArg = true)]
+        public void CMD_userlogin(Client player, string Email, string Password)
+        {
+            ULogin(player, Email, Password);
         }
 
         public void API_onClientEventTrigger(Client sender, string eventName, params object[] arguments)
         {
-            API.consoleOutput("Client event trigger: {0}", eventName);
             switch (eventName)
             {
                 case "loginscript_login":
                     ULogin(sender, arguments[0].ToString(), arguments[1].ToString());
-                    API.sendChatMessageToPlayer(sender, "loginscript_login");
                     break;
             }
         }
 
-        public event ExportedEvent OnUserLoggedIn;
-
         public void ULogin(Client p, string Email, string Password)
         {
-            MySqlConnection _connection = API.exported.spl_mysql.GetConnection();
-            string query = "SELECT * FROM users WHERE email=@name LIMIT 1";
-            MySqlCommand _cmd = new MySqlCommand(query, _connection);
-            _cmd.Parameters.AddWithValue("@name", Email);
-            using (MySqlDataReader reader = _cmd.ExecuteReader())
+            var User = ContextFactory.Instance.Users.FirstOrDefault(up => up.Email == Email);
+            bool isPasswordCorrect = Crypter.CheckPassword(Password, User.Hash);
+
+            if (isPasswordCorrect)
             {
-                API.sendChatMessageToPlayer(p, "reader.HasRows");
-                if (reader.HasRows)
-                {
-                    reader.Read();
-                    var pw = reader.GetString("hash");
-                    API.sendChatMessageToPlayer(p, "reading");
-                    if (ValidatePassword(Password, pw))
-                    {
-                        API.sendChatMessageToPlayer(p, "~g~Logged in as ~r~" + reader.GetString("email"));
-                        API.freezePlayer(p, false);
-                        API.setEntitySyncedData(p, "loginscript_logged_in", true);
-                        API.setEntitySyncedData(p, "user_id", reader.GetInt32("id"));
-                        API.triggerClientEvent(p, "loginscript_loginsuccess");
-                        API.triggerClientEvent(p, "CEFDestroy");
-                        reader.Close();
-                        OnUserLoggedIn(p);
-                    }
-                    else
-                    {
-                        API.triggerClientEvent(p, "loginscript_loginfailed");
-                        API.sendChatMessageToPlayer(p, "Login failed");
-                    }
-                }
-                else
-                {
-                    API.triggerClientEvent(p, "loginscript_loginfailed");
-                    API.sendChatMessageToPlayer(p, "Login failed");
-                }
+                API.sendChatMessageToPlayer(p, "You're now logged in!");
+                //API.triggerClientEvent(p, "loginscript_loginsuccess");
+                //OnUserLoggedIn(p);
+                API.setEntitySyncedData(p, "logged_in", true);
+                User.Social = p.socialClubName;
+                API.sendChatMessageToPlayer(p, "Your account ID is: " + User.ID + ".");
+                API.setEntitySyncedData(p, "ID", User.ID);
+                API.triggerClientEvent(p, "CEFDestroy");
+                ContextFactory.Instance.SaveChanges();
+                
+
             }
+            else
+            {
+                API.sendChatMessageToPlayer(p, "Wrong password!");
+                API.triggerClientEvent(p, "loginscript_loginfailed");
+            }
+        }
+
+        public void Logged(Client p)
+        {
+            CharSel.Selection.CharacterMenu(p, API.getEntitySyncedData(p, "ID"));
         }
 
         public static bool ValidatePassword(string password, string correctHash)
         {
-            return BCrypt.Net.BCrypt.Verify(password, correctHash);
+            return Crypter.CheckPassword(password, correctHash);
         }
 
         /*  [Command("register", "Usage: /register [email] [password]", SensitiveInfo = true, GreedyArg = true)]

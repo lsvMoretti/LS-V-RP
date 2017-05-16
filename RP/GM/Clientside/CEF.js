@@ -47,13 +47,13 @@ API.onServerEventTrigger.connect(function (eventName, args) {
     }
     else if (eventName === "CEFController") {
 
-        CEF.show(false, args[0]);
+        CEF.show(true, args[0]);
         API.sendNotification("~r~Press F4 to hide the interface.");
     }
 
     else if (eventName === "CEFController_CharMenu") {
 
-        CEF.show(false, args[0], true, false);
+        CEF.show(true, args[0], true, false);
         API.sendNotification("Press F1 to toggle the menu.\nPress F2 to see your mouse.\n~r~Press F4 to hide the interface.");
     }
 });
@@ -70,13 +70,11 @@ API.onResourceStop.connect(function () {
         CEF.destroy();
     }
 });
-API.sendChatMessage("Test");
 API.onServerEventTrigger.connect(function (eventName, args) {
     switch (eventName) {
         case "loginscript_loginsuccess":
             API.setHudVisible(true);
             API.setChatVisible(true);
-            API.setGameplayCameraActive();
             CEF.destroy();
             break;
         case "loginscript_show":
@@ -96,5 +94,4 @@ API.onServerEventTrigger.connect(function (eventName, args) {
 
 function login(email, password) {
     API.triggerServerEvent("loginscript_login", email, password);
-    API.consoleoutput("login(email, pass)");
 }

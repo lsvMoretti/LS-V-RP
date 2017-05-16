@@ -17,7 +17,9 @@ namespace Roleplay.Connection
         public Connection()
         {
             API.onPlayerFinishedDownload += API_onPlayerfinishedDownload;
+            
             API.onPlayerConnected += API_onPlayerConnected;
+            
         }
 
         public void API_onPlayerfinishedDownload(Client player)
@@ -31,8 +33,7 @@ namespace Roleplay.Connection
         {
             API.setEntitySyncedData(player, "LOGGED", false);
         }
-       
-
+      
         public static void Login(Client player)
         {
             API.shared.triggerClientEvent(player, "interpolateCamera", 20000, _startCamPos, _startCamPos + new Vector3(0.0, -50.0, 50.0), new Vector3(0.0, 0.0, 180.0), new Vector3(0.0, 0.0, 95.0));
@@ -45,10 +46,10 @@ namespace Roleplay.Connection
 
         public static void PromptLoginScreen(Client player)
         {
-            //string url = "G:/Documents/GTANetwork/Server/resources/RP/Clientside/Resources/boilerplate.html";
-            //API.shared.triggerClientEvent(player, "CEFController", url);
-            API.shared.sendChatMessageToPlayer(player, "Welcome to Los Santos V!");
-            API.shared.sendChatMessageToPlayer(player, "Please use /login to continue!");
+            string url = "Clientside/Resources/boilerplate.html";
+            API.shared.triggerClientEvent(player, "CEFController", url);
+            API.shared.sendChatMessageToPlayer(player, "Welcome to" + GlobalVars.Vars.ServerName + ".");
+            API.shared.sendChatMessageToPlayer(player, "If the CEF hasn't loaded within 15 seconds, please use /login.");
         }
     }
 }
