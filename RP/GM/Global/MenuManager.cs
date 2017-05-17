@@ -15,6 +15,7 @@ using Insight.Database.Providers.MySql;
 using Insight.Database;
 using Roleplay.LoginHandle;
 using Roleplay.Context;
+using Roleplay.CharSel;
 
 namespace Roleplay.Server.Menu
 {
@@ -25,7 +26,7 @@ namespace Roleplay.Server.Menu
             API.onClientEventTrigger += onClientEventTrigger;
         }
 
-        private void onClientEventTrigger(Client player, string eventName, object[] args)
+        public void onClientEventTrigger(Client player, string eventName, object[] args)
         {
             if (eventName == "menu_handler_select_item")
             {
@@ -33,7 +34,7 @@ namespace Roleplay.Server.Menu
                 if (callback == 0) // Character Menu
                 {
                     if ((int)args[1] == (int)args[2] - 1) CharSel.Selection.CreateCharacter(player);
-                    else Roleplay.CharSel.Selection.SelectCharacter(player, (int)args[1] + 1);
+                    else Selection.SelectCharacter(player, (int)args[1] + 1);
                 }
               /*  else if (callback == 1) // Vehicle Menu
                 {

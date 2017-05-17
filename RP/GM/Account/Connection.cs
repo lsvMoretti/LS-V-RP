@@ -11,6 +11,8 @@ namespace Roleplay.Connection
 {
     public class Connection : Script
     {
+
+        
         public static readonly Vector3 _startPos = new Vector3(3433.339f, 5177.579f, 39.79541f);
         public static readonly Vector3 _startCamPos = new Vector3(3476.85f, 5228.022f, 9.453369f);
 

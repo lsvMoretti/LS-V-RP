@@ -49,6 +49,7 @@ namespace Roleplay.LoginHandle
             {
                 case "loginscript_login":
                     ULogin(sender, arguments[0].ToString(), arguments[1].ToString());
+                    API.shared.consoleOutput("loginscript");
                     break;
             }
         }
@@ -69,7 +70,8 @@ namespace Roleplay.LoginHandle
                 API.setEntitySyncedData(p, "ID", User.ID);
                 API.triggerClientEvent(p, "CEFDestroy");
                 ContextFactory.Instance.SaveChanges();
-                
+                Logged(p, User.ID);
+                API.shared.consoleOutput("ULogin");
 
             }
             else
@@ -79,9 +81,10 @@ namespace Roleplay.LoginHandle
             }
         }
 
-        public void Logged(Client p)
+        public void Logged(Client p, int AID)
         {
-            CharSel.Selection.CharacterMenu(p, API.getEntitySyncedData(p, "ID"));
+            CharSel.Selection.CharacterMenu(p, AID);
+            API.shared.consoleOutput("Logged()");
         }
 
         public static bool ValidatePassword(string password, string correctHash)

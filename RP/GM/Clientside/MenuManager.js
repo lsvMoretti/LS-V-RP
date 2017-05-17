@@ -8,7 +8,7 @@ API.onResourceStart.connect(function () {
 
 API.onServerEventTrigger.connect(function (name, args) {
 
-    if (name == "create_menu") {
+    if (name === "create_menu") {
 
         var callbackId = args[0];
         var banner = args[1];
@@ -16,7 +16,7 @@ API.onServerEventTrigger.connect(function (name, args) {
         var noExit = args[3];
 
         var menu = null;
-        if (banner == null)
+        if (banner === null)
             menu = API.createMenu(subtitle, 0, 0, 6);
         else menu = API.createMenu(banner, subtitle, 0, 0, 6);
 
@@ -49,5 +49,5 @@ API.onServerEventTrigger.connect(function (name, args) {
 
 API.onUpdate.connect(function (sender, args) {
 
-    if (menuPool != null) menuPool.ProcessMenus();
+    if (menuPool !== null) menuPool.ProcessMenus();
 });

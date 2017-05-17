@@ -89,6 +89,8 @@
     <Compile Include="Database\Users.cs" />
     <Compile Include="Account\Connection.cs" />
     <Compile Include="Account\Login.cs" />
+    <Compile Include="SpawnManager.cs" />
+    <Content Include="Clientside\HUD.js" />
     <Content Include="Clientside\MenuManager.js" />
     <Compile Include="Database\defaultdbcontext.cs" />
     <Compile Include="Global\MenuManager.cs" />
